@@ -1,17 +1,29 @@
 import React from "react";
-
+import requests from "./requests";
 import "./App.css";
+import Row from "./components/Row";
 
 const App = () => {
-  fetch(
-    "https://api.themoviedb.org/3/tv/2190?api_key=cae9e457e3ca82324f9c392ea76944d5"
-  )
-    .then((respone) => respone.json())
-    .then((data) => {});
-  return <div className="App">Test</div>;
+  const {
+    fetchTrending,
+    fetchNetflixOriginal,
+    fetchTopRated,
+    fetchActionMovies,
+    fetchComedyMovies,
+    fetchHorrorMovies,
+    fetchDocumentaries,
+  } = requests;
+  return (
+    <div className="App">
+      <Row title="Trending" fetchUrl={fetchTrending} />
+      <Row title="Netflix Originals" fetchUrl={fetchNetflixOriginal} />
+      <Row title="Top Rated" fetchUrl={fetchTopRated} />
+      <Row title="Action Movies" fetchUrl={fetchActionMovies} />
+      <Row title="Comedy Movies" fetchUrl={fetchComedyMovies} />
+      <Row title="Horror Movies" fetchUrl={fetchHorrorMovies} />
+      <Row title="Documentaries" fetchUrl={fetchDocumentaries} />
+    </div>
+  );
 };
 
 export default App;
-
-//cae9e457e3ca82324f9c392ea76944d5
-//https://api.themoviedb.org/3/movie/76341?api_key=cae9e457e3ca82324f9c392ea76944d5
