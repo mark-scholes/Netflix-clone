@@ -1,7 +1,8 @@
 .banner {
-  height: 40vh;
+  height: 60vh;
   color: #fff;
   object-fit: contain;
+  margin-bottom: 1.5vh;
 }
 
 .banner__content {
@@ -44,3 +45,12 @@
   color: rgb(51, 51, 51);
   background-color: #fff;
 }
+/* .banner--fade {
+  height: 5vh;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(37, 37, 37, 0.61),
+    #111
+  );
+} */
