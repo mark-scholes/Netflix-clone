@@ -10,12 +10,14 @@ const Banner = () => {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(requests.fetchNetflixOriginal);
+      let randomOrignial = Math.floor(
+        Math.random() * request.data.results.length - 1
+      );
       setMovie(
         //  grab a random item from the netflix original list and use it as the banner
-        request.data.results[
-          Math.floor(Math.random() * request.data.results.length - 1)
-        ]
+        request.data.results[randomOrignial]
       );
+      console.log(request.data.results.length);
       return request;
     }
     fetchData();
@@ -35,6 +37,9 @@ const Banner = () => {
       }}
     >
       <div className="banner__content">
+        <h1 className="banner__category">
+          <strong>Netflix</strong> original
+        </h1>
         <h1 className="banner__title">
           {movie?.title || movie?.name || movie?.original_name}
         </h1>

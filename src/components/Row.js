@@ -7,9 +7,10 @@ import movieTrailer from "movie-trailer";
 const Row = ({ title, fetchUrl, isLargeRow }) => {
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState("");
+
   const opts = {
-    height: "500",
-    width: "100%",
+    height: "700vh",
+    width: "70%",
     playerVars: {
       //https://developers.google.com/youtube/player-parameters,
       autoplay: 1,
@@ -40,16 +41,16 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
     }
     fetchData();
   }, [fetchUrl]);
-  console.log(movies);
+
   return (
     <div className="row">
       <h2 className="row__title">{title}</h2>
       <div className="row__images">
         {movies.map((movie) => (
           <img
+            className={`row__img ${isLargeRow ? "row__imgLarge" : ""}`}
             key={movie.id}
             onClick={() => handleClick(movie)}
-            className={`row__img ${isLargeRow ? "row__imgLarge" : ""}`}
             // {some movies don't have the a backdrop image, in these cases use poster instead}
             src={`${base_url}/${
               isLargeRow || !movie.backdrop_path
@@ -60,6 +61,7 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
           />
         ))}
       </div>
+
       {trailerUrl && <Youtube videoId={trailerUrl} opts={opts} />}
     </div>
   );
